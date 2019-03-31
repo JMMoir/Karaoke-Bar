@@ -14,6 +14,8 @@ class RoomTest < MiniTest::Test
 
     @song1 = Song.new("Bohemian Rhapsody")
 
+    @songs = [Song.new("Bohemian Rhapsody"),Song.new("Thunder Road"),Song.new("I walk the line")]
+
     @guest1 = Guest.new("John", "Bohemian Rhapsody", 20)
     @guest2 = Guest.new("Claire", "I walk the line", 25)
 
@@ -63,5 +65,17 @@ class RoomTest < MiniTest::Test
   def test_guest_has_paid_for_room
     @room1.guest_has_paid_for_room(@room1)
     assert_equal(5, @room1.till)
+  end
+
+  def test_songs_array
+    assert_equal(3, @room1.songs_array_length(@songs))
+  end
+
+  def test_search_array_add_to_playlist
+    assert_equal(1, @room1.search_array_add_to_playlist(@songs))
+  end
+
+  def test_search_array_add_to_playlist_not_found
+    assert_equal("Not found", @room1.search_array_add_to_playlist(@songs))
   end
 end

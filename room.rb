@@ -16,6 +16,25 @@ class Room
     return @playlist
   end
 
+  def songs_array_length(array)
+    return array.length
+  end
+
+  def search_array_add_to_playlist(array)
+    p "Enter search"
+    searched = gets.chomp
+
+    for song in array
+      if song.title == searched
+        @playlist << song
+        return @playlist.length
+      end
+    end
+    return "Not found"
+
+  end
+
+
   def check_in_guest(guest)
     @guests << guest
     return @guests.count
